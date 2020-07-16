@@ -84,12 +84,17 @@ namespace PruebaFINAKTIVA.Controllers
             {
                 db.Entry(municipalitys).State = EntityState.Modified;
                 db.SaveChanges();
-
+                
+                // si el estado estado del municipio es distinto va y hace la consulta en la base de datos 
                 if(!municipalitys.State)
                 {
+                    //hace una consulta a la base de datos por id de la tabla intermedia
                     var regions = db.MunicipalityRegion.Where(r => r.MunicipalityId == municipalitys.MunicipalityId);
+
+                    //El count  da el número de registros que trae la consulta
                     if (regions.Count() > 0)
                     {
+                        
                         db.MunicipalityRegion.RemoveRange(regions);
                         db.SaveChanges();
                     }

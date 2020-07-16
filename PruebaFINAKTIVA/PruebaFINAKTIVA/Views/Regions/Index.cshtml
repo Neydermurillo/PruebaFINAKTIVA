@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<PruebaFINAKTIVA.Models.Region>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Regions";
 }
 
-<h2>Index</h2>
+    <h2>Region</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create", new { }, new { @class = "btn btn-primary"})
 </p>
 <table class="table">
     <tr>
@@ -23,9 +23,9 @@
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.RegionId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.RegionId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.RegionId })
+            @Html.ActionLink("Edit", "Edit", new { id=item.RegionId }, new { @class = "btn btn-warning" }) 
+            @Html.ActionLink("Details", "Details", new { id=item.RegionId }, new { @class = "btn btn-info" }) 
+            @Html.ActionLink("Delete", "Delete", new { id=item.RegionId }, new { @class = "btn btn-danger" })
         </td>
     </tr>
 }
