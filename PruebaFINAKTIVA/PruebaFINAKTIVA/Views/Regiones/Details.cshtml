@@ -1,0 +1,26 @@
+﻿@model PruebaFINAKTIVA.Models.regiones
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>regiones</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre_region)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre_region)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.codigo_region }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

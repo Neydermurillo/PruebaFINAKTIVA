@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PruebaFinaktivaModelStoreContainer" CdmEntityContainer="PruebaFinaktivaEntities">
+    <EntitySetMapping Name="municipio">
+      <EntityTypeMapping TypeName="PruebaFinaktivaModel.municipio">
+        <MappingFragment StoreEntitySet="municipio">
+          <ScalarProperty Name="codigo_mupio" ColumnName="codigo_mupio" />
+          <ScalarProperty Name="nombre_mupio" ColumnName="nombre_mupio" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="codigo_region" ColumnName="codigo_region" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="region">
+      <EntityTypeMapping TypeName="PruebaFinaktivaModel.region">
+        <MappingFragment StoreEntitySet="region">
+          <ScalarProperty Name="codigo_region" ColumnName="codigo_region" />
+          <ScalarProperty Name="nombre_region" ColumnName="nombre_region" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

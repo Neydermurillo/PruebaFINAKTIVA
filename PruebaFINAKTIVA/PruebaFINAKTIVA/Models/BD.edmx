@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="PruebaFinaktivaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="municipios">
+          <Key>
+            <PropertyRef Name="codigo_mupio" />
+          </Key>
+          <Property Name="codigo_mupio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_mupio" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="estado" Type="bit" Nullable="false" />
+          <Property Name="codigo_region" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="regiones">
+          <Key>
+            <PropertyRef Name="codigo_region" />
+          </Key>
+          <Property Name="codigo_region" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_region" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="fk_Region">
+          <End Role="regiones" Type="Self.regiones" Multiplicity="1" />
+          <End Role="municipios" Type="Self.municipios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="regiones">
+              <PropertyRef Name="codigo_region" />
+            </Principal>
+            <Dependent Role="municipios">
+              <PropertyRef Name="codigo_region" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PruebaFinaktivaModelStoreContainer">
+          <EntitySet Name="municipios" EntityType="Self.municipios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="regiones" EntityType="Self.regiones" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_Region" Association="Self.fk_Region">
+            <End Role="regiones" EntitySet="regiones" />
+            <End Role="municipios" EntitySet="municipios" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PruebaFinaktivaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="municipios">
+          <Key>
+            <PropertyRef Name="codigo_mupio" />
+          </Key>
+          <Property Name="codigo_mupio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_mupio" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estado" Type="Boolean" Nullable="false" />
+          <Property Name="codigo_region" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="regiones" Relationship="Self.fk_Region" FromRole="municipios" ToRole="regiones" />
+        </EntityType>
+        <EntityType Name="regiones">
+          <Key>
+            <PropertyRef Name="codigo_region" />
+          </Key>
+          <Property Name="codigo_region" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_region" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="municipios" Relationship="Self.fk_Region" FromRole="regiones" ToRole="municipios" />
+        </EntityType>
+        <Association Name="fk_Region">
+          <End Role="regiones" Type="Self.regiones" Multiplicity="1" />
+          <End Role="municipios" Type="Self.municipios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="regiones">
+              <PropertyRef Name="codigo_region" />
+            </Principal>
+            <Dependent Role="municipios">
+              <PropertyRef Name="codigo_region" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PruebaFinaktivaEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="municipios" EntityType="Self.municipios" />
+          <EntitySet Name="regiones" EntityType="Self.regiones" />
+          <AssociationSet Name="fk_Region" Association="Self.fk_Region">
+            <End Role="regiones" EntitySet="regiones" />
+            <End Role="municipios" EntitySet="municipios" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PruebaFinaktivaModelStoreContainer" CdmEntityContainer="PruebaFinaktivaEntities1">
+          <EntitySetMapping Name="municipios">
+            <EntityTypeMapping TypeName="PruebaFinaktivaModel.municipios">
+              <MappingFragment StoreEntitySet="municipios">
+                <ScalarProperty Name="codigo_mupio" ColumnName="codigo_mupio" />
+                <ScalarProperty Name="nombre_mupio" ColumnName="nombre_mupio" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="codigo_region" ColumnName="codigo_region" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="regiones">
+            <EntityTypeMapping TypeName="PruebaFinaktivaModel.regiones">
+              <MappingFragment StoreEntitySet="regiones">
+                <ScalarProperty Name="codigo_region" ColumnName="codigo_region" />
+                <ScalarProperty Name="nombre_region" ColumnName="nombre_region" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

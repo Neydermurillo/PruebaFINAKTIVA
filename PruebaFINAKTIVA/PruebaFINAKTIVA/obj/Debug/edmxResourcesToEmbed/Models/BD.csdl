@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PruebaFinaktivaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="municipios">
+    <Key>
+      <PropertyRef Name="codigo_mupio" />
+    </Key>
+    <Property Name="codigo_mupio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre_mupio" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="estado" Type="Boolean" Nullable="false" />
+    <Property Name="codigo_region" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="regiones" Relationship="Self.fk_Region" FromRole="municipios" ToRole="regiones" />
+  </EntityType>
+  <EntityType Name="regiones">
+    <Key>
+      <PropertyRef Name="codigo_region" />
+    </Key>
+    <Property Name="codigo_region" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre_region" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="municipios" Relationship="Self.fk_Region" FromRole="regiones" ToRole="municipios" />
+  </EntityType>
+  <Association Name="fk_Region">
+    <End Role="regiones" Type="Self.regiones" Multiplicity="1" />
+    <End Role="municipios" Type="Self.municipios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="regiones">
+        <PropertyRef Name="codigo_region" />
+      </Principal>
+      <Dependent Role="municipios">
+        <PropertyRef Name="codigo_region" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PruebaFinaktivaEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="municipios" EntityType="Self.municipios" />
+    <EntitySet Name="regiones" EntityType="Self.regiones" />
+    <AssociationSet Name="fk_Region" Association="Self.fk_Region">
+      <End Role="regiones" EntitySet="regiones" />
+      <End Role="municipios" EntitySet="municipios" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
