@@ -12,18 +12,13 @@ namespace PruebaFINAKTIVA.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class regiones
+    public partial class MunicipalityRegion
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public regiones()
-        {
-            this.municipios = new HashSet<municipios>();
-        }
+        public int MunicipalyRegionId { get; set; }
+        public int MunicipalityId { get; set; }
+        public int RegionId { get; set; }
     
-        public int codigo_region { get; set; }
-        public string nombre_region { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<municipios> municipios { get; set; }
+        public virtual Municipalitys Municipalitys { get; set; }
+        public virtual Region Region { get; set; }
     }
 }

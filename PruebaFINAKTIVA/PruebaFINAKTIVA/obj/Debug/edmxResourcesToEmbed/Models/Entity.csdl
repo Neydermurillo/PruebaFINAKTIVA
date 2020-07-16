@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TestFinaktivaBDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="MunicipalityRegion">
+    <Key>
+      <PropertyRef Name="MunicipalyRegionId" />
+    </Key>
+    <Property Name="MunicipalyRegionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MunicipalityId" Type="Int32" Nullable="false" />
+    <Property Name="RegionId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Municipalitys" Relationship="Self.FK_MunicipalityRegion_Municipalitys" FromRole="MunicipalityRegion" ToRole="Municipalitys" />
+    <NavigationProperty Name="Region" Relationship="Self.FK_MunicipalityRegion_Region" FromRole="MunicipalityRegion" ToRole="Region" />
+  </EntityType>
+  <EntityType Name="Municipalitys">
+    <Key>
+      <PropertyRef Name="MunicipalityId" />
+    </Key>
+    <Property Name="MunicipalityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="State" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="MunicipalityRegion" Relationship="Self.FK_MunicipalityRegion_Municipalitys" FromRole="Municipalitys" ToRole="MunicipalityRegion" />
+  </EntityType>
+  <EntityType Name="Region">
+    <Key>
+      <PropertyRef Name="RegionId" />
+    </Key>
+    <Property Name="RegionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="MunicipalityRegion" Relationship="Self.FK_MunicipalityRegion_Region" FromRole="Region" ToRole="MunicipalityRegion" />
+  </EntityType>
+  <Association Name="FK_MunicipalityRegion_Municipalitys">
+    <End Role="Municipalitys" Type="Self.Municipalitys" Multiplicity="1" />
+    <End Role="MunicipalityRegion" Type="Self.MunicipalityRegion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Municipalitys">
+        <PropertyRef Name="MunicipalityId" />
+      </Principal>
+      <Dependent Role="MunicipalityRegion">
+        <PropertyRef Name="MunicipalityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MunicipalityRegion_Region">
+    <End Role="Region" Type="Self.Region" Multiplicity="1" />
+    <End Role="MunicipalityRegion" Type="Self.MunicipalityRegion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Region">
+        <PropertyRef Name="RegionId" />
+      </Principal>
+      <Dependent Role="MunicipalityRegion">
+        <PropertyRef Name="RegionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TestFinaktivaBDEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="MunicipalityRegion" EntityType="Self.MunicipalityRegion" />
+    <EntitySet Name="Municipalitys" EntityType="Self.Municipalitys" />
+    <EntitySet Name="Region" EntityType="Self.Region" />
+    <AssociationSet Name="FK_MunicipalityRegion_Municipalitys" Association="Self.FK_MunicipalityRegion_Municipalitys">
+      <End Role="Municipalitys" EntitySet="Municipalitys" />
+      <End Role="MunicipalityRegion" EntitySet="MunicipalityRegion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MunicipalityRegion_Region" Association="Self.FK_MunicipalityRegion_Region">
+      <End Role="Region" EntitySet="Region" />
+      <End Role="MunicipalityRegion" EntitySet="MunicipalityRegion" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

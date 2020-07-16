@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TestFinaktivaBDModelStoreContainer" CdmEntityContainer="TestFinaktivaBDEntities">
+    <EntitySetMapping Name="MunicipalityRegion">
+      <EntityTypeMapping TypeName="TestFinaktivaBDModel.MunicipalityRegion">
+        <MappingFragment StoreEntitySet="MunicipalityRegion">
+          <ScalarProperty Name="MunicipalyRegionId" ColumnName="MunicipalyRegionId" />
+          <ScalarProperty Name="MunicipalityId" ColumnName="MunicipalityId" />
+          <ScalarProperty Name="RegionId" ColumnName="RegionId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Municipalitys">
+      <EntityTypeMapping TypeName="TestFinaktivaBDModel.Municipalitys">
+        <MappingFragment StoreEntitySet="Municipalitys">
+          <ScalarProperty Name="MunicipalityId" ColumnName="MunicipalityId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="State" ColumnName="State" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Region">
+      <EntityTypeMapping TypeName="TestFinaktivaBDModel.Region">
+        <MappingFragment StoreEntitySet="Region">
+          <ScalarProperty Name="RegionId" ColumnName="RegionId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

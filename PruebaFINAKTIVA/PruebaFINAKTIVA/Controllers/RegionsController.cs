@@ -10,112 +10,107 @@ using PruebaFINAKTIVA.Models;
 
 namespace PruebaFINAKTIVA.Controllers
 {
-    public class municipiosController : Controller
+    public class RegionsController : Controller
     {
-        private PruebaFinaktivaEntities1 db = new PruebaFinaktivaEntities1();
+        private TestFinaktivaBDEntities db = new TestFinaktivaBDEntities();
 
-        // GET: municipios
+        // GET: Regions
         public ActionResult Index()
         {
-            var municipios = db.municipios.Include(m => m.regiones);
-            return View(municipios.ToList());
+            return View(db.Region.ToList());
         }
 
-        // GET: municipios/Details/5
+        // GET: Regions/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            municipios municipios = db.municipios.Find(id);
-            if (municipios == null)
+            Region region = db.Region.Find(id);
+            if (region == null)
             {
                 return HttpNotFound();
             }
-            return View(municipios);
+            return View(region);
         }
 
-        // GET: municipios/Create
+        // GET: Regions/Create
         public ActionResult Create()
         {
-            ViewBag.codigo_region = new SelectList(db.regiones, "codigo_region", "nombre_region");
             return View();
         }
 
-        // POST: municipios/Create
+        // POST: Regions/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "codigo_mupio,nombre_mupio,estado,codigo_region")] municipios municipios)
+        public ActionResult Create([Bind(Include = "RegionId,Name")] Region region)
         {
             if (ModelState.IsValid)
             {
-                db.municipios.Add(municipios);
+                db.Region.Add(region);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.codigo_region = new SelectList(db.regiones, "codigo_region", "nombre_region", municipios.codigo_region);
-            return View(municipios);
+            return View(region);
         }
 
-        // GET: municipios/Edit/5
+        // GET: Regions/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            municipios municipios = db.municipios.Find(id);
-            if (municipios == null)
+            Region region = db.Region.Find(id);
+            if (region == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.codigo_region = new SelectList(db.regiones, "codigo_region", "nombre_region", municipios.codigo_region);
-            return View(municipios);
+            return View(region);
         }
 
-        // POST: municipios/Edit/5
+        // POST: Regions/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "codigo_mupio,nombre_mupio,estado,codigo_region")] municipios municipios)
+        public ActionResult Edit([Bind(Include = "RegionId,Name")] Region region)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(municipios).State = EntityState.Modified;
+                db.Entry(region).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.codigo_region = new SelectList(db.regiones, "codigo_region", "nombre_region", municipios.codigo_region);
-            return View(municipios);
+            return View(region);
         }
 
-        // GET: municipios/Delete/5
+        // GET: Regions/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            municipios municipios = db.municipios.Find(id);
-            if (municipios == null)
+            Region region = db.Region.Find(id);
+            if (region == null)
             {
                 return HttpNotFound();
             }
-            return View(municipios);
+            return View(region);
         }
 
-        // POST: municipios/Delete/5
+        // POST: Regions/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            municipios municipios = db.municipios.Find(id);
-            db.municipios.Remove(municipios);
+            Region region = db.Region.Find(id);
+            db.Region.Remove(region);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

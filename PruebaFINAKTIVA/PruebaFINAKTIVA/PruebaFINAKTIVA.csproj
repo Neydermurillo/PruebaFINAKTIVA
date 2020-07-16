@@ -142,31 +142,35 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\municipiosController.cs" />
-    <Compile Include="Controllers\regionesController.cs" />
+    <Compile Include="Controllers\MunicipalityRegionsController.cs" />
+    <Compile Include="Controllers\MunicipalitysController.cs" />
+    <Compile Include="Controllers\RegionsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\BD.Context.cs">
+    <Compile Include="Models\Entity.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>BD.Context.tt</DependentUpon>
+      <DependentUpon>Entity.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\BD.cs">
+    <Compile Include="Models\Entity.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>BD.tt</DependentUpon>
+      <DependentUpon>Entity.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\BD.Designer.cs">
+    <Compile Include="Models\Entity.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>BD.edmx</DependentUpon>
+      <DependentUpon>Entity.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\municipios.cs">
-      <DependentUpon>BD.tt</DependentUpon>
+    <Compile Include="Models\MunicipalityRegion.cs">
+      <DependentUpon>Entity.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\regiones.cs">
-      <DependentUpon>BD.tt</DependentUpon>
+    <Compile Include="Models\Municipalitys.cs">
+      <DependentUpon>Entity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Region.cs">
+      <DependentUpon>Entity.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -179,24 +183,24 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\BD.Context.tt">
+    <Content Include="Models\Entity.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BD.edmx</DependentUpon>
-      <LastGenOutput>BD.Context.cs</LastGenOutput>
+      <DependentUpon>Entity.edmx</DependentUpon>
+      <LastGenOutput>Entity.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\BD.tt">
+    <Content Include="Models\Entity.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BD.edmx</DependentUpon>
-      <LastGenOutput>BD.cs</LastGenOutput>
+      <DependentUpon>Entity.edmx</DependentUpon>
+      <LastGenOutput>Entity.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\BD.edmx">
+    <EntityDeploy Include="Models\Entity.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>BD.Designer.cs</LastGenOutput>
+      <LastGenOutput>Entity.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\BD.edmx.diagram">
-      <DependentUpon>BD.edmx</DependentUpon>
+    <Content Include="Models\Entity.edmx.diagram">
+      <DependentUpon>Entity.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -223,16 +227,21 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Regiones\Create.cshtml" />
-    <Content Include="Views\Regiones\Delete.cshtml" />
-    <Content Include="Views\Regiones\Details.cshtml" />
-    <Content Include="Views\Regiones\Edit.cshtml" />
-    <Content Include="Views\Regiones\Index.cshtml" />
-    <Content Include="Views\municipios\Create.cshtml" />
-    <Content Include="Views\municipios\Delete.cshtml" />
-    <Content Include="Views\municipios\Details.cshtml" />
-    <Content Include="Views\municipios\Edit.cshtml" />
-    <Content Include="Views\municipios\Index.cshtml" />
+    <Content Include="Views\Municipalitys\Create.cshtml" />
+    <Content Include="Views\Municipalitys\Delete.cshtml" />
+    <Content Include="Views\Municipalitys\Details.cshtml" />
+    <Content Include="Views\Municipalitys\Edit.cshtml" />
+    <Content Include="Views\Municipalitys\Index.cshtml" />
+    <Content Include="Views\MunicipalityRegions\Create.cshtml" />
+    <Content Include="Views\MunicipalityRegions\Delete.cshtml" />
+    <Content Include="Views\MunicipalityRegions\Details.cshtml" />
+    <Content Include="Views\MunicipalityRegions\Edit.cshtml" />
+    <Content Include="Views\MunicipalityRegions\Index.cshtml" />
+    <Content Include="Views\Regions\Create.cshtml" />
+    <Content Include="Views\Regions\Delete.cshtml" />
+    <Content Include="Views\Regions\Details.cshtml" />
+    <Content Include="Views\Regions\Edit.cshtml" />
+    <Content Include="Views\Regions\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

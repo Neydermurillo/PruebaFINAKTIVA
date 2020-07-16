@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TestFinaktivaBDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="MunicipalityRegion">
+          <Key>
+            <PropertyRef Name="MunicipalyRegionId" />
+          </Key>
+          <Property Name="MunicipalyRegionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MunicipalityId" Type="int" Nullable="false" />
+          <Property Name="RegionId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Municipalitys">
+          <Key>
+            <PropertyRef Name="MunicipalityId" />
+          </Key>
+          <Property Name="MunicipalityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="State" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Region">
+          <Key>
+            <PropertyRef Name="RegionId" />
+          </Key>
+          <Property Name="RegionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_MunicipalityRegion_Municipalitys">
+          <End Role="Municipalitys" Type="Self.Municipalitys" Multiplicity="1" />
+          <End Role="MunicipalityRegion" Type="Self.MunicipalityRegion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Municipalitys">
+              <PropertyRef Name="MunicipalityId" />
+            </Principal>
+            <Dependent Role="MunicipalityRegion">
+              <PropertyRef Name="MunicipalityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MunicipalityRegion_Region">
+          <End Role="Region" Type="Self.Region" Multiplicity="1" />
+          <End Role="MunicipalityRegion" Type="Self.MunicipalityRegion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Region">
+              <PropertyRef Name="RegionId" />
+            </Principal>
+            <Dependent Role="MunicipalityRegion">
+              <PropertyRef Name="RegionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TestFinaktivaBDModelStoreContainer">
+          <EntitySet Name="MunicipalityRegion" EntityType="Self.MunicipalityRegion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Municipalitys" EntityType="Self.Municipalitys" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Region" EntityType="Self.Region" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_MunicipalityRegion_Municipalitys" Association="Self.FK_MunicipalityRegion_Municipalitys">
+            <End Role="Municipalitys" EntitySet="Municipalitys" />
+            <End Role="MunicipalityRegion" EntitySet="MunicipalityRegion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MunicipalityRegion_Region" Association="Self.FK_MunicipalityRegion_Region">
+            <End Role="Region" EntitySet="Region" />
+            <End Role="MunicipalityRegion" EntitySet="MunicipalityRegion" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TestFinaktivaBDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="MunicipalityRegion">
+          <Key>
+            <PropertyRef Name="MunicipalyRegionId" />
+          </Key>
+          <Property Name="MunicipalyRegionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MunicipalityId" Type="Int32" Nullable="false" />
+          <Property Name="RegionId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Municipalitys" Relationship="Self.FK_MunicipalityRegion_Municipalitys" FromRole="MunicipalityRegion" ToRole="Municipalitys" />
+          <NavigationProperty Name="Region" Relationship="Self.FK_MunicipalityRegion_Region" FromRole="MunicipalityRegion" ToRole="Region" />
+        </EntityType>
+        <EntityType Name="Municipalitys">
+          <Key>
+            <PropertyRef Name="MunicipalityId" />
+          </Key>
+          <Property Name="MunicipalityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="State" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="MunicipalityRegion" Relationship="Self.FK_MunicipalityRegion_Municipalitys" FromRole="Municipalitys" ToRole="MunicipalityRegion" />
+        </EntityType>
+        <EntityType Name="Region">
+          <Key>
+            <PropertyRef Name="RegionId" />
+          </Key>
+          <Property Name="RegionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="MunicipalityRegion" Relationship="Self.FK_MunicipalityRegion_Region" FromRole="Region" ToRole="MunicipalityRegion" />
+        </EntityType>
+        <Association Name="FK_MunicipalityRegion_Municipalitys">
+          <End Role="Municipalitys" Type="Self.Municipalitys" Multiplicity="1" />
+          <End Role="MunicipalityRegion" Type="Self.MunicipalityRegion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Municipalitys">
+              <PropertyRef Name="MunicipalityId" />
+            </Principal>
+            <Dependent Role="MunicipalityRegion">
+              <PropertyRef Name="MunicipalityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MunicipalityRegion_Region">
+          <End Role="Region" Type="Self.Region" Multiplicity="1" />
+          <End Role="MunicipalityRegion" Type="Self.MunicipalityRegion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Region">
+              <PropertyRef Name="RegionId" />
+            </Principal>
+            <Dependent Role="MunicipalityRegion">
+              <PropertyRef Name="RegionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TestFinaktivaBDEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="MunicipalityRegion" EntityType="Self.MunicipalityRegion" />
+          <EntitySet Name="Municipalitys" EntityType="Self.Municipalitys" />
+          <EntitySet Name="Region" EntityType="Self.Region" />
+          <AssociationSet Name="FK_MunicipalityRegion_Municipalitys" Association="Self.FK_MunicipalityRegion_Municipalitys">
+            <End Role="Municipalitys" EntitySet="Municipalitys" />
+            <End Role="MunicipalityRegion" EntitySet="MunicipalityRegion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MunicipalityRegion_Region" Association="Self.FK_MunicipalityRegion_Region">
+            <End Role="Region" EntitySet="Region" />
+            <End Role="MunicipalityRegion" EntitySet="MunicipalityRegion" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TestFinaktivaBDModelStoreContainer" CdmEntityContainer="TestFinaktivaBDEntities">
+          <EntitySetMapping Name="MunicipalityRegion">
+            <EntityTypeMapping TypeName="TestFinaktivaBDModel.MunicipalityRegion">
+              <MappingFragment StoreEntitySet="MunicipalityRegion">
+                <ScalarProperty Name="MunicipalyRegionId" ColumnName="MunicipalyRegionId" />
+                <ScalarProperty Name="MunicipalityId" ColumnName="MunicipalityId" />
+                <ScalarProperty Name="RegionId" ColumnName="RegionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Municipalitys">
+            <EntityTypeMapping TypeName="TestFinaktivaBDModel.Municipalitys">
+              <MappingFragment StoreEntitySet="Municipalitys">
+                <ScalarProperty Name="MunicipalityId" ColumnName="MunicipalityId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="State" ColumnName="State" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Region">
+            <EntityTypeMapping TypeName="TestFinaktivaBDModel.Region">
+              <MappingFragment StoreEntitySet="Region">
+                <ScalarProperty Name="RegionId" ColumnName="RegionId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

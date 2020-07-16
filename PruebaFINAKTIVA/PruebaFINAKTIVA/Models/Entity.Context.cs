@@ -13,10 +13,10 @@ namespace PruebaFINAKTIVA.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class PruebaFinaktivaEntities1 : DbContext
+    public partial class TestFinaktivaBDEntities : DbContext
     {
-        public PruebaFinaktivaEntities1()
-            : base("name=PruebaFinaktivaEntities1")
+        public TestFinaktivaBDEntities()
+            : base("name=TestFinaktivaBDEntities")
         {
         }
     
@@ -25,7 +25,8 @@ namespace PruebaFINAKTIVA.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<municipios> municipios { get; set; }
-        public virtual DbSet<regiones> regiones { get; set; }
+        public virtual DbSet<MunicipalityRegion> MunicipalityRegion { get; set; }
+        public virtual DbSet<Municipalitys> Municipalitys { get; set; }
+        public virtual DbSet<Region> Region { get; set; }
     }
 }
